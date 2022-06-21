@@ -1,5 +1,6 @@
 #!/bin/sh
 
+set -x
 : ${GITHUB_USERNAME:=hortonworks}
 : ${GITHUB_PROJECT:=cloudbreak-deployer}
 
@@ -20,7 +21,8 @@ main() {
         fi
     fi
 
-    curl -Ls $url | tar -xz -C ${dest}
+    wget $url -O /tmp/cloudbreak-deployer-latest.tgz
+    tar -xzf /tmp/cloudbreak-deployer-latest.tgz -C ${dest}
     echo "---> cbd installed into ${dest}"
 }
 
